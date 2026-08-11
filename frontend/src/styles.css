@@ -1,0 +1,39 @@
+@import "primeicons/primeicons.css";
+
+/* ==========================
+   RESET
+========================== */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: "Inter", sans-serif;
+    background: #f5f7fa;
+}
+
+/* Não aplicar font-family ao seletor universal */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Garantir que os PrimeIcons usam a fonte correta */
+.pi {
+    font-family: "primeicons" !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Tema */
+:root {
+
+    --p-primary-color:#2563eb;
+    --p-primary-hover-color:#1d4ed8;
+    --p-primary-active-color:#1e40af;
+
+}

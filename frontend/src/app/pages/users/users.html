@@ -1,0 +1,360 @@
+<div class="users">
+    <!-- ===================== Sidebar ===================== -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="pi pi-building"></i>
+
+            <div>
+                <h2>RFID Access</h2>
+                <span>Hospital System</span>
+            </div>
+        </div>
+
+        <ul class="menu">
+
+            <li routerLink = "/dashboard-admin" routerLinkActive = "active">
+                <i class="pi pi-home"></i>
+                <span>Dashboard</span>
+            </li>
+
+            <li class="active">
+                <i class="pi pi-users"></i>
+                <span>Utilizadores</span>
+            </li>
+
+            <li routerLink = "/rooms" routerLinkActive = "active" >
+                <i class="pi pi-building"></i>
+                <span>Salas</span>
+            </li>
+
+            <li routerLink = "/doors" routerLinkActive = "active">
+                <i class="pi pi-lock"></i>
+                <span>Portas</span>
+            </li>
+
+            <li routerLink = "/access-logs" routerLinkActive = "active">
+                <i class="pi pi-history"></i>
+                <span>Histórico</span>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ===================== Conteúdo ===================== -->
+    <main class="content">
+
+        <!-- Header -->
+        <div class="header">
+
+            <div>
+                <h1>Utilizadores</h1>
+                <p>Gestão de utilizadores do sistema RFID</p>
+            </div>
+
+            <div class="profile">
+
+                <p-avatar
+                    icon="pi pi-user"
+                    shape="circle">
+                </p-avatar>
+
+                <div>
+                    <h4>Administrador</h4>
+                    <span>Sistema RFID</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== Cards ===================== -->
+        <section class="cards">
+
+            <div class="card" (click) = "showAllUsers()">
+
+                <div class="card-icon total">
+                    <i class="pi pi-users"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Total Utilizadores</span>
+                    <h2>{{ cards.totalUsers }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterActiveUsers()">
+
+                <div class="card-icon active">
+                    <i class="pi pi-check-circle"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Ativos</span>
+                    <h2>{{ cards.activeUsers }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterInactiveUsers()">
+
+                <div class="card-icon inactive">
+                    <i class="pi pi-times-circle"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Inativos</span>
+                    <h2>{{ cards.inactiveUsers }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterByRole('doctor')">
+
+                <div class="card-icon doctor">
+                    <i class="pi pi-heart-fill"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Médicos</span>
+                    <h2>{{ cards.doctors }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterByRole('nurse')">
+
+                <div class="card-icon nurse">
+                    <i class="pi pi-plus-circle"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Enfermeiros</span>
+                    <h2>{{ cards.nurses }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterByRole('receptionist')">
+
+                <div class="card-icon reception">
+                    <i class="pi pi-id-card"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Rececionistas</span>
+                    <h2>{{ cards.receptionists }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterByRole('patient')">
+                <div class="card-icon patient">
+                    <i class="pi pi-user"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Pacientes</span>
+                    <h2>{{ cards.patients }}</h2>
+                </div>
+
+            </div>
+
+            <div class="card" (click) = "filterByRole('visitor')">
+
+                <div class="card-icon visitor">
+                    <i class="pi pi-users"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>Visitantes</span>
+                    <h2>{{ cards.visitors }}</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ===================== Barra de ações ===================== -->
+        <section class="toolbar">
+
+            <div class="search">
+
+                <input
+                    pInputText
+                    type="text"
+                    placeholder="Pesquisar utilizador..."
+                    [(ngModel)]="searchText"
+                    (input) = "search()">
+            </div>
+
+            <div class="actions">
+
+                <button
+                    pButton
+                    icon="pi pi-plus"
+                    label="Novo Utilizador"
+                    (click)="openCreateDialog()">
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ===================== Tabela ===================== -->
+        <section class="table-container">
+
+            <p-table
+                [value]="filteredUsers"
+                [tableStyle]="{'min-width':'70rem'}">
+
+                <!-- Cabeçalho -->
+                <ng-template pTemplate="header">
+
+                    <tr>
+
+                        <th>Nome</th>
+
+                        <th>Email</th>
+
+                        <th>RFID</th>
+
+                        <th>Função</th>
+
+                        <th>Estado</th>
+
+                        <th style="width:160px">Ações</th>
+
+                    </tr>
+
+                </ng-template>
+
+                <!-- Corpo -->
+                <ng-template pTemplate="body" let-user>
+
+                    <tr>
+
+                        <td>{{ user.firstName }} {{ user.lastName }}</td>
+
+                        <td>{{ user.email }}</td>
+
+                        <td>{{ user.rfid }}</td>
+
+                        <td>{{ user.role }}</td>
+
+                        <td>
+
+                            <p-tag
+                                [value]="user.active ? 'Ativo' : 'Inativo'"
+                                [severity]="user.active ? 'success' : 'danger'">
+                            </p-tag>
+
+                        </td>
+
+                        <td>
+
+                            <div class="actions-column">
+
+                                <button
+                                    pButton
+                                    type ="button"
+                                    icon="pi pi-pencil"
+                                    class = "action-btn edit-btn"
+                                    (click)="editUser(user)">
+                                </button>
+
+                                <button
+                                    pButton
+                                    type ="button"
+                                    icon="pi pi-trash"
+                                    class="action-btn delete-btn"
+                                    (click)="deleteUser(user._id)">
+                                </button>
+
+                                <button
+                                    pButton
+                                    type ="button"
+                                    [icon]="user.active ? 'pi pi-lock-open' : 'pi pi-lock'"
+                                    class="action-btn lock-btn"
+                                    (click)="toggleUserStatus(user)">
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </ng-template>
+
+            </p-table>
+
+        </section>
+
+        <!-- ===================== Dialog ===================== -->
+
+        <p-dialog
+            [header]="editingUserId ? 'Editar Utilizador' : 'Novo Utilizador'"
+            [(visible)]="displayDialog"
+            [modal]="true"
+            [style]="{width:'500px'}">
+
+            <div class="form">
+
+                <label>Primeiro Nome</label>
+                <input
+                    pInputText
+                    [(ngModel)]="newUser.firstName">
+
+                <label>Último Nome</label>
+                <input
+                    pInputText
+                    [(ngModel)]="newUser.lastName">
+
+                <label>Email</label>
+                <input
+                    pInputText
+                    [(ngModel)]="newUser.email">
+
+                <label>Password</label>
+                <input
+                    pInputText
+                    type="password"
+                    [(ngModel)]="newUser.password">
+
+                <label>RFID</label>
+                <input
+                    pInputText
+                    [(ngModel)]="newUser.rfid">
+
+                <label>Função</label>
+                <input
+                    pInputText
+                    [(ngModel)]="newUser.role">
+
+            </div>
+
+            <ng-template pTemplate="footer">
+
+                <button
+                    pButton
+                    label="Cancelar"
+                    severity="secondary"
+                    (click)="displayDialog=false">
+                </button>
+
+                <button
+                    pButton
+                    [label]="editingUserId ? 'Atualizar' : 'Criar'"
+                    (click)="editingUserId ? updateUser() : createUser()">
+                </button>
+
+            </ng-template>
+
+        </p-dialog>
+
+    </main>
+
+</div>

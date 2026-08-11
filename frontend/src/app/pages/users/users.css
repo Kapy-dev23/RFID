@@ -1,0 +1,397 @@
+/* =====================================
+   LAYOUT
+===================================== */
+
+.users{
+    display:flex;
+    min-height:100vh;
+    background:#f4f7fb;
+}
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.sidebar{
+    width:260px;
+    background:linear-gradient(180deg,#0f4c81,#1c6dd0);
+    color:#fff;
+    padding:25px;
+    box-shadow:4px 0 15px rgba(0,0,0,.15);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:50px;
+}
+
+.logo i{
+    font-size:38px;
+}
+
+.logo h2{
+    margin:0;
+    font-size:22px;
+}
+
+.logo span{
+    font-size:13px;
+    opacity:.8;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.menu li{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px 18px;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.menu li:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.menu li.active{
+    background:#fff;
+    color:#0f4c81;
+    font-weight:600;
+}
+
+.menu i{
+    font-size:18px;
+}
+
+/* =====================================
+   CONTEÚDO
+===================================== */
+
+.content{
+    flex:1;
+    padding:35px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    margin:0;
+    color:#173f8a;
+    font-size:34px;
+}
+
+.header p{
+    margin-top:5px;
+    color:#777;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.profile h4{
+    margin:0;
+    color:#173f8a;
+}
+
+.profile span{
+    font-size:13px;
+    color:#777;
+}
+
+/* =====================================
+   CARDS
+===================================== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.card-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:30px;
+    flex-shrink:0;
+}
+
+.card-info span{
+    color:#777;
+    font-size:15px;
+}
+
+.card-info h2{
+    margin-top:8px;
+    color:#173f8a;
+    font-size:34px;
+}
+
+/* =====================================
+   CORES DOS CARDS
+===================================== */
+
+.total{
+    background:#2563eb;
+}
+
+.active{
+    background:#16a34a;
+}
+
+.inactive{
+    background:#dc2626;
+}
+
+.doctor{
+    background:#e11d48;
+}
+
+.nurse{
+    background:#0ea5e9;
+}
+
+.reception{
+    background:#f59e0b;
+}
+
+.patient{
+    background:#7c3aed;
+}
+
+.visitor{
+    background:#64748b;
+}
+
+/* =====================================
+   TOOLBAR
+===================================== */
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.search{
+    width:350px;
+}
+
+.search input{
+    width:100%;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+/* =====================================
+   TABELA
+===================================== */
+
+.table-container{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    overflow:hidden;
+}
+
+:host ::ng-deep .p-datatable{
+    border:none;
+}
+
+:host ::ng-deep .p-datatable thead th{
+    background:#eef4fb;
+    color:#173f8a;
+    font-weight:600;
+    font-size:15px;
+    padding:18px;
+    border:none;
+}
+
+:host ::ng-deep .p-datatable tbody td{
+    padding:20px 18px;
+    border:none;
+    vertical-align:middle;
+}
+
+:host ::ng-deep .p-datatable tbody tr{
+    border-bottom:1px solid #edf2f7;
+}
+
+:host ::ng-deep .p-datatable tbody tr:last-child{
+    border-bottom:none;
+}
+
+:host ::ng-deep .p-tag{
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* =====================================
+   BOTÕES DA TABELA
+===================================== */
+
+.actions-column{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+}
+
+.action-btn{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:all .25s ease;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+}
+
+.edit-btn{
+    background:#10b981 !important;
+    color:#fff !important;
+}
+
+.edit-btn:hover{
+    background:#059669 !important;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(16,185,129,.35);
+}
+
+.delete-btn{
+    background:#ef4444 !important;
+    color:#fff !important;
+}
+
+.delete-btn:hover{
+    background:#dc2626 !important;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(239,68,68,.35);
+}
+
+.lock-btn{
+    background:#2563eb !important;
+    color:#fff !important;
+}
+
+.lock-btn:hover{
+    background:#1d4ed8 !important;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(37,99,235,.35);
+}
+
+.action-btn .pi{
+    font-size:17px;
+}
+
+/* =====================================
+   DIALOG
+===================================== */
+
+.form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.form label{
+    font-weight:600;
+}
+
+.form input{
+    width:100%;
+}
+
+/* =====================================
+   RESPONSIVO
+===================================== */
+
+@media(max-width:1200px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .users{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .toolbar{
+        flex-direction:column;
+        gap:15px;
+        align-items:stretch;
+    }
+
+    .search{
+        width:100%;
+    }
+
+}

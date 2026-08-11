@@ -1,0 +1,7 @@
+As interfaces servem para definir a estrutura dos dados. Elas dizem ao TypeScript que propriedades um objeto deve ter e de que tipo são.
+
+Imaginando que o backend devolve um utilizador em formato json (firstName, lastName ...)
+Se mais tarde eu escrevo "console.log(user.fistName)" (deveria ser firstName) o typeScript com any aceita tudo
+portanto quando executa a aplicação vou ver undefined
+
+Já com uma interface o vscode mostra imediatamento uma linha vermelha e diz o erro.

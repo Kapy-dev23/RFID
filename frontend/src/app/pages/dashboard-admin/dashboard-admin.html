@@ -1,0 +1,346 @@
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="pi pi-building"></i>
+            <div>
+                <h2>RFID Access</h2>
+                <span>Hospital System</span>
+            </div>
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <i class="pi pi-home"></i>
+                <span>Dashboard</span>
+            </li>
+
+            <li routerLink = "/users" routerLinkActive = "active"> <!-- Redereciona para app.routes -->
+                <i class="pi pi-users"></i>
+                <span>Utilizadores</span>
+            </li>
+
+            <li routerLink = "/rooms" routerLinkActive = "active" >
+                <i class="pi pi-building"></i>
+                <span>Salas</span>
+            </li>
+
+            <li routerLink = "/doors" routerLinkActive = "active">
+                <i class="pi pi-lock"></i>
+                <span>Portas</span>
+            </li>
+
+            <li routerLink = "/access-logs" routerLinkActive = "active">
+                <i class="pi pi-history"></i>
+                <span>Histórico</span>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="content">
+
+        <!-- Header -->
+        <div class="header">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>Monitorização em tempo real do Hospital</p>
+
+            </div>
+
+            <div class="profile">
+
+                <p-avatar
+                    icon="pi pi-user"
+                    shape="circle">
+                </p-avatar>
+
+                <div>
+
+                    <h4>Administrador</h4>
+
+                    <span>Sistema RFID</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Cards -->
+
+        <div class="cards">
+
+            <div class="dashboard-card" routerLink = "/users" routerLinkActive = "active">
+
+                <div class="icon users">
+
+                    <i class="pi pi-users"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Utilizadores</span>
+
+                    <h2>{{ totalUsers }}</h2>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card" routerLink = "/rooms" routerLinkActive = "active">
+
+                <div class="icon rooms">
+
+                    <i class="pi pi-building"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Salas</span>
+
+                    <h2>{{ totalRooms }}</h2>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card" routerLink = "/doors" routerLinkActive = "active">
+
+                <div class="icon doors">
+
+                    <i class="pi pi-lock"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Portas</span>
+
+                    <h2>{{ totalDoors }}</h2>
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <div class="icon average">
+
+                    <i class="pi pi-stopwatch"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Tempo Médio</span>
+
+                    <h2>{{ averageWaitingTime | number:'1.0-1' }} min</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Conteúdo Inferior -->
+
+        <div class="dashboard-grid">
+
+            <!-- Estado das Salas -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Estado das Salas</h3>
+
+                </div>
+
+                <p-table
+                    [value]="rooms"
+                    responsiveLayout="scroll">
+
+                    <ng-template pTemplate="header">
+
+                        <tr>
+
+                            <th>Sala</th>
+
+                            <th>Capacidade</th>
+
+                            <th>Ocupação</th>
+
+                            <th>Estado</th>
+
+                        </tr>
+
+                    </ng-template>
+
+                    <ng-template
+                        pTemplate="body"
+                        let-room>
+
+                        <tr>
+
+                            <td>
+
+                                <strong>{{ room.name }}</strong>
+
+                            </td>
+
+                            <td>
+
+                                {{ room.currentOccupancy }}/{{ room.capacity }}
+
+                            </td>
+
+                            <td style="width:250px">
+
+                                <p-progressbar
+
+                                    [value]="(room.currentOccupancy / room.capacity) * 100">
+
+                                </p-progressbar>
+
+                            </td>
+
+                            <td>
+
+                                <p-tag
+
+                                    [severity]="room.currentOccupancy >= room.capacity ? 'danger' : room.currentOccupancy >= room.capacity * 0.8 ? 'warn' : 'success'"
+
+                                    [value]="room.currentOccupancy + (room.currentOccupancy === 1 ? ' pessoa' : ' pessoas')">
+
+                                </p-tag>
+
+                            </td>
+
+                        </tr>
+
+                    </ng-template>
+
+                </p-table>
+
+            </div>
+
+            <!-- Últimos acessos -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Últimos Acessos</h3>
+
+                    <a
+                        routerLink = "/access-logs" routerLinkActive = "active">
+
+                        Ver histórico
+
+                        <i class="pi pi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+                <p-table
+                    [value]="accessHistory"
+                    responsiveLayout="scroll">
+
+                    <ng-template pTemplate="header">
+
+                        <tr>
+
+                            <th>Utilizador</th>
+
+                            <th>Porta</th>
+
+                            <th>Tipo</th>
+
+                            <th>Data</th>
+
+                        </tr>
+
+                    </ng-template>
+
+                    <ng-template
+                        pTemplate="body"
+                        let-access>
+
+                        <tr>
+
+                            <td>
+
+                                {{ access.user?.firstName }}
+                                {{ access.user?.lastName }}
+
+                            </td>
+
+                            <td>
+
+                                {{ access.door?.name }}
+
+                            </td>
+
+                            <td>
+
+                                    <p-tag
+
+                                        [severity]="
+                                            access.type === 'enter'
+                                            ? 'success'
+                                            : access.type === 'exit'
+                                            ? 'danger'
+                                            : 'info'
+                                        "
+
+                                        [icon]="
+                                            access.type === 'enter'
+                                            ? 'pi pi-sign-in'
+                                            : access.type === 'exit'
+                                            ? 'pi pi-sign-out'
+                                            : 'pi pi-arrow-right-arrow-left'
+                                        "
+
+                                        [value]="
+                                            access.type === 'enter'
+                                            ? 'Entrada'
+                                            : access.type === 'exit'
+                                                ? 'Saída'
+                                                : 'Mudança de Sala'
+                                        ">
+
+                                    </p-tag>
+
+                            </td>
+
+                            <td>
+
+                                {{ access.date | date:'dd/MM/yyyy HH:mm' }}
+
+                            </td>
+
+                        </tr>
+
+                    </ng-template>
+
+                </p-table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>

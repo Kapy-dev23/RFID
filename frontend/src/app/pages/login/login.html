@@ -1,0 +1,100 @@
+<p-toast></p-toast> <!--serve para mostrar as mensagens (notificações) no ecrã.-->
+<div class="login-container">
+
+    <div class="login-card">
+
+        <!-- Lado esquerdo -->
+        <div class="left-panel">
+
+            <div class="overlay">
+
+                <img
+                    src="logoSemFundo.png"
+                    alt="RFID Logo"
+                    class="logo">
+
+                <h1>RFID Access System</h1>
+
+                <p class="subtitle">
+                    Gestão Inteligente de Acessos
+                    <br>
+                    em Ambientes Hospitalares
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="pi pi-shield"></i>
+                        <span>Segurança</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="pi pi-wifi"></i>
+                        <span>Monitorização</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="pi pi-chart-line"></i>
+                        <span>Eficiência</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Lado direito -->
+        <div class="right-panel">
+
+            <div class="login-box">
+
+                <img
+                    src="logoSemFundo.png"
+                    alt="Logo"
+                    class="logo-small">
+
+                <h2>Bem-vindo!</h2>
+
+                <p class="description">
+                    Faça login para aceder ao sistema.
+                </p>
+
+                <div class="field">
+
+                    <label>Email</label>
+
+                    <input
+                        pInputText
+                        type="email"
+                        placeholder="Introduzir o email"
+                        [(ngModel)]="email">
+
+                </div>
+
+                <div class="field">
+
+                    <label>Password</label>
+
+                    <p-password
+                        [(ngModel)]="password"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        placeholder="Introduza a password">
+                    </p-password>
+
+                </div>
+
+                <button class="login-btn"
+                    (click)="login()">
+                    <i class="pi pi-sign-in"></i>
+                    Entrar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
